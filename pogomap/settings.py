@@ -37,13 +37,13 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', [])
 # Application definition
 
 INSTALLED_APPS = [
+    'pokemon_entities.apps.PokemonEntitiesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'pokemon_entities'
 ]
 
 MIDDLEWARE = [
@@ -115,9 +115,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-RU'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Yekaterinburg'
 
 USE_I18N = True
 
