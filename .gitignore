@@ -113,5 +113,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# my
 .idea/
 .vscode/
+env.bak
+media/
