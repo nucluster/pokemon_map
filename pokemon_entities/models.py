@@ -7,8 +7,13 @@ class Pokemon(models.Model):
     title_jp = models.CharField(max_length=200, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     img_url = models.URLField(blank=True, null=True)
-    # next_evolution
-    # previous_evolution
+    next_evolution = models.ForeignKey('Pokemon', on_delete=models.CASCADE,
+                                       related_name='next', blank=True,
+                                       null=True)
+    previous_evolution = models.ForeignKey('Pokemon',
+                                           on_delete=models.CASCADE,
+                                           related_name='previous', blank=True,
+                                           null=True)
     image = models.ImageField(null=True, blank=True)
 
     def __str__(self):
