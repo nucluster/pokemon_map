@@ -7,13 +7,12 @@ class Pokemon(models.Model):
     title_jp = models.CharField(max_length=200, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     img_url = models.URLField(blank=True, null=True)
-    next_evolution = models.ForeignKey('Pokemon', on_delete=models.CASCADE,
-                                       related_name='next', blank=True,
-                                       null=True)
-    previous_evolution = models.ForeignKey('Pokemon',
-                                           on_delete=models.CASCADE,
-                                           related_name='previous', blank=True,
-                                           null=True)
+    previous_evolution = models.ForeignKey('self',
+                                           verbose_name='Из кого '
+                                                        'эволюционирует',
+                                           null=True, blank=True,
+                                           related_name='next_evolutions',
+                                           on_delete=models.SET_NULL)
     image = models.ImageField(null=True, blank=True)
 
     def __str__(self):
@@ -21,7 +20,8 @@ class Pokemon(models.Model):
 
 
 class PokemonEntity(models.Model):
-    pokemon = models.ForeignKey(Pokemon, on_delete=models.CASCADE)
+    pokemon = models.ForeignKey(Pokemon, on_delete=models.CASCADE,
+                                related_name='pokemon_entities')
     lat = models.FloatField(null=True, blank=True)
     lon = models.FloatField(null=True, blank=True)
     appeared_at = models.DateTimeField(null=True, blank=True)
