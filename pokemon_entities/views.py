@@ -5,7 +5,6 @@ from django.http import HttpResponseNotFound
 from django.shortcuts import render
 from .models import Pokemon
 
-
 MOSCOW_CENTER = [55.751244, 37.618423]
 DEFAULT_IMAGE_URL = (
     'https://vignette.wikia.nocookie.net/pokemon/images/6/6e/%21.png/revision'
@@ -70,15 +69,17 @@ def show_pokemon(request, pokemon_id):
             pokemon.img_url
         )
 
-    context = {'map': folium_map._repr_html_(), 'pokemon': requested_pokemon} 
+    context = {'map': folium_map._repr_html_(), 'pokemon': requested_pokemon}
 
     if requested_pokemon.next_evolutions.all():
         context.update({
-        'pokemon_next_evolutions': requested_pokemon.next_evolutions.all(),
-        'pokemon_next_evolutions_id': requested_pokemon.next_evolutions.all()[0].id,
-        'pokemon_next_evolutions_img_url': requested_pokemon.next_evolutions.all()[0].img_url,
-        'pokemon_next_evolutions_title_ru': requested_pokemon.next_evolutions.all()[0].title_ru,
+            'pokemon_next_evolutions': requested_pokemon.next_evolutions.all(),
+            'pokemon_next_evolutions_id':
+                requested_pokemon.next_evolutions.all()[0].id,
+            'pokemon_next_evolutions_img_url':
+                requested_pokemon.next_evolutions.all()[0].img_url,
+            'pokemon_next_evolutions_title_ru':
+                requested_pokemon.next_evolutions.all()[0].title_ru,
         })
 
     return render(request, 'pokemon.html', context=context)
-
