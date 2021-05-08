@@ -18,7 +18,7 @@ def add_pokemon_marker(folium_map, lat, lon, lvl, image_url=DEFAULT_IMAGE_URL):
         image_url,
         icon_size=(50, 50),
     )
-    tooltip = f'Уровень покемона:{lvl}'
+    tooltip = f'Уровень покемона: {lvl}'
     folium.Marker(
         [lat, lon], tooltip=tooltip,
         # Warning! `tooltip` attribute is disabled intentionally
