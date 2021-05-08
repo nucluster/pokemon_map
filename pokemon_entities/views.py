@@ -69,6 +69,13 @@ def show_pokemon(request, pokemon_id):
             pokemon_entity.lon,
             pokemon.img_url
         )
+    
+    # pokemon_evolution = {}
+
+    # for pokemon in pokemons:
+    #     pokemon_evolution[pokemon] = {"title_ru": pokemon.title_ru,
+    #      "pokemon_id": pokemon.id,
+    #      }
 
     return render(request, 'pokemon.html', context={
         'map': folium_map._repr_html_(),
