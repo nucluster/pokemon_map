@@ -41,13 +41,13 @@
                   <h6 class="d-flex justify-content-center m-2">Из кого эволюционировал</h6>
                 </div>
               {% endif %}
-              {% if pokemon.next_evolutions.all %}
+              {% if pokemon.next_evolutions %}
                 <div class="col-5 clearfix p-2 m-2">
                   <div class="img-thumbnail">
-                    <a href="{% url 'pokemon' pokemon.next_evolutions.all[0].id %}">
+                    <a href="{% url 'pokemon' pokemon.next_evolutions %}">
                       <div class="d-flex justify-content-center">
                         <img class="pull-left mr-2 float-left" src="{{pokemon.next_evolutions.img_url}}" style="height:50px; width:50px">
-                        <p class="align-middle m-0" style="line-height:50px; font-size: 20px;">{{pokemon.pokemon.next_evolutions.all()[0]}}</p>
+                        <p class="align-middle m-0" style="line-height:50px; font-size: 20px;">{{pokemon.pokemon.next_evolutions}}</p>
                       </div>
                     </a>
                   </div>
