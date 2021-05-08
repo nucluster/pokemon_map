@@ -66,9 +66,10 @@ def show_pokemon(request, pokemon_id):
     for pokemon_entity in pokemon.entities.filter(
             pokemon=requested_pokemon):
         add_pokemon_marker(
-            folium_map, pokemon_entity.lat,
-            pokemon_entity.lon,
-            pokemon.img_url
+                folium_map, pokemon_entity.lat,
+                pokemon_entity.lon,
+                pokemon_entity.level,
+                pokemon.img_url,
         )
 
     context = {'map': folium_map._repr_html_(), 'pokemon': requested_pokemon}
