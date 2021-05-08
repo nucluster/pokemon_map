@@ -13,13 +13,14 @@ DEFAULT_IMAGE_URL = (
 )
 
 
-def add_pokemon_marker(folium_map, lat, lon, image_url=DEFAULT_IMAGE_URL):
+def add_pokemon_marker(folium_map, lat, lon, lvl, image_url=DEFAULT_IMAGE_URL):
     icon = folium.features.CustomIcon(
         image_url,
         icon_size=(50, 50),
     )
+    tooltip = f'Уровень покемона:{lvl}'
     folium.Marker(
-        [lat, lon],
+        [lat, lon], tooltip=tooltip,
         # Warning! `tooltip` attribute is disabled intentionally
         # to fix strange folium cyrillic encoding bug
         icon=icon,
@@ -34,7 +35,8 @@ def show_all_pokemons(request):
             add_pokemon_marker(
                 folium_map, pokemon_entity.lat,
                 pokemon_entity.lon,
-                pokemon.img_url
+                pokemon_entity.level,
+                pokemon.img_url,
             )
 
     pokemons_on_page = []
