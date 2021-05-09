@@ -4,6 +4,7 @@ import json
 from django.http import HttpResponseNotFound
 from django.shortcuts import render
 from .models import Pokemon
+from django.shortcuts import get_object_or_404
 
 MOSCOW_CENTER = [55.751244, 37.618423]
 DEFAULT_IMAGE_URL = (
@@ -52,23 +53,19 @@ def show_all_pokemons(request):
 
 
 def show_pokemon(request, pokemon_id):
-    pokemons = Pokemon.objects.all()
-    for pokemon in pokemons:
-        if pokemon.id == int(pokemon_id):
-            requested_pokemon = pokemon
-            break
-    else:
+    try:
+        pokemon = get_object_or_404(Pokemon, id=int(pokemon_id))
+    except ValueError:
         return HttpResponseNotFound('<h1>Такой покемон не найден</h1>')
 
     folium_map = folium.Map(location=MOSCOW_CENTER, zoom_start=12)
-    for pokemon_entity in pokemon.entities.filter(
-            pokemon=requested_pokemon):
+    for pokemon_entity in pokemon.entities.all():
         add_pokemon_marker(
             folium_map, pokemon_entity.lat,
             pokemon_entity.lon,
             pokemon.img_url
         )
 
-    context = {'map': folium_map._repr_html_(), 'pokemon': requested_pokemon}
+    context = {'map': folium_map._repr_html_(), 'pokemon': pokemon}
 
     return render(request, 'pokemon.html', context=context)
