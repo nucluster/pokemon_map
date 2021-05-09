@@ -71,15 +71,4 @@ def show_pokemon(request, pokemon_id):
 
     context = {'map': folium_map._repr_html_(), 'pokemon': requested_pokemon}
 
-    if requested_pokemon.next_evolutions.all():
-        context.update({
-            'pokemon_next_evolutions': requested_pokemon.next_evolutions.all(),
-            'pokemon_next_evolutions_id':
-                requested_pokemon.next_evolutions.all()[0].id,
-            'pokemon_next_evolutions_img_url':
-                requested_pokemon.next_evolutions.all()[0].img_url,
-            'pokemon_next_evolutions_title_ru':
-                requested_pokemon.next_evolutions.all()[0].title_ru,
-        })
-
     return render(request, 'pokemon.html', context=context)
