@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'pogomap.wsgi.application'
 # }
 
 DATABASES = {
-    "default": env.dj_db_url('DATABASE_URL', 'sqlite:///db.sqlite3')
+    'default': env.dj_db_url('DATABASE_URL', 'sqlite:///db.sqlite3')
 }
 
 # Password validation
